@@ -81,6 +81,7 @@ resource "google_service_account" "cloudrun" {
   depends_on = [
     module.project_services,
   ]
+
   account_id = "cloudrun-${random_id.random_code.hex}"
 }
 
