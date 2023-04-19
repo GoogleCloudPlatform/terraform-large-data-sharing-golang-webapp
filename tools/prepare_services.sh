@@ -19,4 +19,3 @@ PROJECT_NUMBER=$(gcloud projects list --filter="$PROJECT_ID" --format="value(PRO
 gcloud config set project $PROJECT_ID
 
 gcloud services enable cloudresourcemanager.googleapis.com
-gcloud services enable cloudbuild.googleapis.com
