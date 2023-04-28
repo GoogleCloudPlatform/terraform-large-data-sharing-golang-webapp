@@ -19,6 +19,11 @@ output "lb_global_ip" {
   value       = module.simple.lb_external_ip
 }
 
+output "backend_bucket_name" {
+  description = "The name of the backend bucket used for Cloud CDN"
+  value       = module.simple.backend_bucket_name
+}
+
 output "cdn_bucket_name" {
   description = "The bucket name for cdn"
   value       = module.simple.bucket_name

@@ -19,6 +19,11 @@ output "lb_external_ip" {
   value       = module.load_balancer.lb_external_ip
 }
 
+output "backend_bucket_name" {
+  description = "The name of the backend bucket used for Cloud CDN"
+  value       = module.load_balancer.backend_bucket_name
+}
+
 output "bucket_name" {
   description = "Bucket name"
   value       = module.storage.bucket_name

@@ -42,10 +42,19 @@ func TestSimpleExample(t *testing.T) {
 			}
 		}
 
-		// check cloud storage exist default content
+		// check if cloud storage exists
 		bucketName := example.GetStringOutput("cdn_bucket_name")
 		storage := gcloud.Run(t, fmt.Sprintf("storage buckets describe gs://%s --format=json", bucketName), gcloudArgs)
 		assert.NotEmpty(storage)
+
+		// check if the backend bucket service exists and use a CDN
+		backendBucketName := example.GetStringOutput("backend_bucket_name")
+		backendBucket := gcloud.Run(t, fmt.Sprintf("compute backend-buckets describe %s --format=json", backendBucketName), gcloudArgs)
+		assert.True(backendBucket.Get("enableCdn").Bool())
+
+		// check if the firestore database exists
+		firestoreDbName := gcloud.Run(t, fmt.Sprintf("alpha firestore databases describe --format=json"), gcloudArgs)
+		assert.NotEmpty(firestoreDbName)
 
 		// check app e2e is working
 		lb_global_ip := example.GetStringOutput("lb_global_ip")
