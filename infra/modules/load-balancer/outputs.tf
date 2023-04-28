@@ -18,3 +18,8 @@ output "lb_external_ip" {
   description = "Frontend IP address of the load balancer"
   value       = google_compute_global_forwarding_rule.lds.ip_address
 }
+
+output "backend_bucket_name" {
+  description = "The name of the backend bucket used for Cloud CDN"
+  value       = google_compute_backend_bucket.cdn.name
+}
