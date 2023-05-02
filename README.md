@@ -72,3 +72,4 @@ resources of this module:
 - firestore.googleapis.com
 - vpcaccess.googleapis.com
 - monitoring.googleapis.com
+- cloudtrace.googleapis.com

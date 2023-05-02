@@ -27,7 +27,8 @@ module "project_services" {
     "cloudresourcemanager.googleapis.com",
     "firestore.googleapis.com",
     "vpcaccess.googleapis.com",
-    "monitoring.googleapis.com"
+    "monitoring.googleapis.com",
+    "cloudtrace.googleapis.com",
   ]
 }
 
@@ -82,6 +83,7 @@ resource "google_project_iam_member" "cloudrun" {
     "roles/storage.objectAdmin",
     "roles/datastore.user",
     "roles/compute.networkUser",
+    "roles/cloudtrace.agent",
   ])
   project = var.project_id
   role    = each.key
