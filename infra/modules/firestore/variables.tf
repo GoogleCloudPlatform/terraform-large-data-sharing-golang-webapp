@@ -28,7 +28,7 @@ variable "collection_fields" {
   description = "collection id with respect to its fields"
   type        = map(any)
   default = {
-    "fileMeta" = [
+    "fileMetadata" = [
       {
         field_path   = "tags"
         array_config = "CONTAINS"
