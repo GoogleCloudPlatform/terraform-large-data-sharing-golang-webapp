@@ -36,7 +36,7 @@ data "google_project" "project" {}
 
 locals {
   resource_path           = "resource"
-  firestore               = length(var.lds_firestore) == 0 ? "fileMetadata" : var.lds_firestore
+  firestore               = length(var.lds_firestore) == 0 ? "fileMetadata-cdn-golang" : var.lds_firestore
   firestore_field_path    = length(var.lds_firestore_field_path) == 0 ? "path" : var.lds_firestore_field_path
   firestore_field_name    = length(var.lds_firestore_field_name) == 0 ? "name" : var.lds_firestore_field_name
   firestore_field_size    = length(var.lds_firestore_field_size) == 0 ? "size" : var.lds_firestore_field_size
@@ -65,7 +65,7 @@ module "storage" {
   project_id = var.project_id
   location   = var.bucket_location
   labels     = var.labels
-  name       = "lds-resource-${data.google_project.project.number}"
+  name       = "lds-resource-${data.google_project.project.number}-golang"
 }
 
 module "networking" {
@@ -94,7 +94,7 @@ resource "random_id" "random_code" {
 }
 
 resource "google_service_account" "cloudrun" {
-  account_id = "cloudrun-${random_id.random_code.hex}"
+  account_id = "cloudrun-${random_id.random_code.hex}-golang"
 }
 
 resource "google_project_iam_member" "cloudrun" {
@@ -117,7 +117,7 @@ module "cloud_run_server" {
 
   project_id      = var.project_id
   location        = var.region
-  cloud_run_name  = "lds-server"
+  cloud_run_name  = "lds-server-golang"
   cloud_run_image = var.lds_server_image
   limits = {
     cpu    = "2000m"
@@ -190,7 +190,7 @@ module "cloud_run_client" {
 
   project_id      = var.project_id
   location        = var.region
-  cloud_run_name  = "lds-client"
+  cloud_run_name  = "lds-client-golang"
   cloud_run_image = var.lds_client_image
   limits = {
     cpu    = "1000m"

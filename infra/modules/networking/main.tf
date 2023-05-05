@@ -16,14 +16,14 @@
 
 resource "google_compute_network" "main" {
   project                 = var.project_id
-  name                    = "lds-network"
+  name                    = "lds-network-golang"
   auto_create_subnetworks = true
 }
 
 resource "google_compute_subnetwork" "main" {
   region                   = var.region
   network                  = google_compute_network.main.id
-  name                     = "lds-vpc-connector-subnetwork"
+  name                     = "lds-vpc-connector-subnetwork-golang"
   private_ip_google_access = true
 
   # Subnets used for VPC connectors must have a netmask of 28.
@@ -33,7 +33,7 @@ resource "google_compute_subnetwork" "main" {
 resource "google_vpc_access_connector" "main" {
   project = var.project_id
   region  = var.region
-  name    = "lds-vpc-connector"
+  name    = "lds-vpc-connector-golang"
   subnet {
     name = google_compute_subnetwork.main.name
   }

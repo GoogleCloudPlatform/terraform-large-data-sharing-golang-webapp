@@ -81,14 +81,14 @@ variable "labels" {
   type        = map(string)
   description = "A map of key/value label pairs to assign to the resources."
   default = {
-    app = "large-data-sharing"
+    app = "large-data-sharing-golang"
   }
 }
 
 variable "lds_firestore" {
   description = "Firestore collection id"
   type        = string
-  default     = "fileMetadata"
+  default     = "fileMetadata-cdn-golang"
 }
 
 variable "lds_firestore_field_path" {
