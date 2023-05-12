@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright 2023 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,8 +15,8 @@
 # limitations under the License.
 
 PROJECT_ID=$1
-
-BUCKET_NAME=tf-backend-lds-`gcloud projects list --filter PROJECT_ID=$PROJECT_ID --format="value(projectNumber)"`
+ORIGINAL_BUCKET_NAME=$(gcloud projects list --filter PROJECT_ID="$PROJECT_ID" --format="value(projectNumber)")
+BUCKET_NAME=tf-backend-lds-"$ORIGINAL_BUCKET_NAME"
 
 # Generate tf_backend.tf by BUCKET_NAME
 cat << EOF > ../infra/tf_backend.tf
