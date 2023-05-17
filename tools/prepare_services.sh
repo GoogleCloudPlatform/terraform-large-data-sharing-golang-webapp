@@ -16,6 +16,6 @@
 PROJECT_ID=$(gcloud config get-value project)
 PROJECT_NUMBER=$(gcloud projects list --filter="$PROJECT_ID" --format="value(PROJECT_NUMBER)")
 
-gcloud config set project $PROJECT_ID
+gcloud config set project "$PROJECT_ID"
 
 gcloud services enable cloudresourcemanager.googleapis.com
