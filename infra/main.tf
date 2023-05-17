@@ -31,7 +31,11 @@ module "project_services" {
   ]
 }
 
-data "google_project" "project" {}
+data "google_project" "project" {
+  depends_on = [
+    module.project_services,
+  ]
+}
 
 locals {
   resource_path = "resource"
@@ -74,6 +78,10 @@ resource "random_id" "random_code" {
 }
 
 resource "google_service_account" "cloudrun" {
+  depends_on = [
+    module.project_services,
+  ]
+
   account_id = "cloudrun-${random_id.random_code.hex}"
 }
 
@@ -189,6 +197,10 @@ module "load_balancer" {
 }
 
 resource "google_monitoring_dashboard" "lds" {
+  depends_on = [
+    module.project_services,
+  ]
+
   for_each = {
     "lds_cloudrun_dashboard.tftpl" = {
       PROJECT_ID = var.project_id,
