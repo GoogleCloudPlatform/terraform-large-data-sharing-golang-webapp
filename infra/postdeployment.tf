@@ -37,7 +37,7 @@ resource "google_cloud_run_v2_job" "migrate_data" {
         command = ["/bin/bash"]
         args = [
           "-c",
-          "${join(" && ", local.migrate_data_commands)}"
+          join(" && ", local.migrate_data_commands)
         ]
       }
       vpc_access {
