@@ -58,6 +58,39 @@ func TestSimpleExample(t *testing.T) {
 			return false, nil
 		}
 		utils.Poll(t, isServing, 10, time.Minute*1)
+
+		// Check cloud run jobs status
+		isJobCompletion := func() (bool, error) {
+			cloudRunJobs := gcloud.Run(t, ("beta run jobs list --format=json"), gcloudArgs).Array()
+			var jobResults []bool
+			for _, cloudRunJob := range cloudRunJobs {
+				jobName := cloudRunJob.Get("metadata.name").String()
+				jobCompletionTime := cloudRunJob.Get("status.latestCreatedExecution.completionTimestamp").String()
+				jobExecutionCount := cloudRunJob.Get("status.executionCount").Int()
+				fmt.Printf("Job %s completion time: %s, executionCount: %d\n", jobName, jobCompletionTime, jobExecutionCount)
+				if jobCompletionTime == "" || jobExecutionCount < 1 {
+					fmt.Printf("Job %s is not completed\n", jobName)
+					jobResults = append(jobResults, false)
+				} else {
+					fmt.Printf("Job %s is completed\n", jobName)
+					jobResults = append(jobResults, true)
+				}
+			}
+			if allTrue(jobResults) {
+				return false, nil
+			}
+			return true, nil
+		}
+		utils.Poll(t, isJobCompletion, 180, time.Second * 3)
 	})
 	example.Test()
+}
+
+func allTrue(arr []bool) bool {
+    for _, value := range arr {
+        if !value {
+            return false
+        }
+    }
+    return true
 }
