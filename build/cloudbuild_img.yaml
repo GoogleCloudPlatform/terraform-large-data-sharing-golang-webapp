@@ -19,18 +19,12 @@ steps:
     args: ['auth', 'configure-docker', '-q']
 
   - id: clone-repo
-    name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'gcloud'
-    args: ['source', 'repos', 'clone', '${_APP_REPO_NAME}', '--project=${_APP_REPO_PROJECT_ID}']
-
-  - id: checkout-main-branch
-    dir: ${_APP_REPO_NAME}/api
     name: 'gcr.io/cloud-builders/git'
-    args: ['checkout', 'main']
+    args: ['clone', '-b', 'main', 'https://github.com/GoogleCloudPlatform/${_APP_REPO_NAME}.git']
 
   - id: build-backend-docker-image
     dir: ${_APP_REPO_NAME}/api
-    waitFor: ['checkout-main-branch']
+    waitFor: ['clone-repo']
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/${PROJECT_ID}/${_BACKEND_IMAGE_REPO_NAME}:${_IMAGE_TAG}', '.']
 
@@ -42,7 +36,7 @@ steps:
 
   - id: build-frontend-docker-image
     dir: ${_APP_REPO_NAME}/frontend
-    waitFor: ['checkout-main-branch']
+    waitFor: ['clone-repo']
     name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/${PROJECT_ID}/${_FRONTEND_IMAGE_REPO_NAME}:${_IMAGE_TAG}', '.']
 
@@ -53,8 +47,7 @@ steps:
     args: ['push', 'gcr.io/${PROJECT_ID}/${_FRONTEND_IMAGE_REPO_NAME}:${_IMAGE_TAG}']
 
 substitutions:
-  _APP_REPO_PROJECT_ID: 'devops-356804'
-  _APP_REPO_NAME: 'hsa-lds-app-golang'
+  _APP_REPO_NAME: 'app-large-data-sharing-golang'
   _BACKEND_IMAGE_REPO_NAME: 'hsa-lds-golang-backend'
   _FRONTEND_IMAGE_REPO_NAME: 'hsa-lds-golang-frontend'
   _IMAGE_TAG: 'latest'

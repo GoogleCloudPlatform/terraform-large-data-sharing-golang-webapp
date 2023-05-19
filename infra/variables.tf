@@ -81,6 +81,42 @@ variable "labels" {
   type        = map(string)
   description = "A map of key/value label pairs to assign to the resources."
   default = {
-    app = "large-data-sharing"
+    app = "large-data-sharing-golang"
   }
+}
+
+variable "lds_firestore" {
+  description = "Firestore collection id"
+  type        = string
+  default     = "fileMetadata-cdn"
+}
+
+variable "lds_firestore_field_path" {
+  description = "Firestore field: path"
+  type        = string
+  default     = "path"
+}
+
+variable "lds_firestore_field_name" {
+  description = "Firestore field: name"
+  type        = string
+  default     = "name"
+}
+
+variable "lds_firestore_field_size" {
+  description = "Firestore field: size"
+  type        = string
+  default     = "size"
+}
+
+variable "lds_firestore_field_tags" {
+  description = "Firestore field: tags"
+  type        = string
+  default     = "tags"
+}
+
+variable "lds_firestore_field_orderNo" {
+  description = "Firestore field: orderNo"
+  type        = string
+  default     = "orderNo"
 }

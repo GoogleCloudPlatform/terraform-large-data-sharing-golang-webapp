@@ -33,6 +33,7 @@ The resources/services/activations/deletions that this module will create/trigge
 | lds\_server\_image | Docker image for backend | `string` | `"gcr.io/hsa-resources-public/hsa-lds-golang-backend:latest"` | no |
 | project\_id | GCP project ID. | `string` | n/a | yes |
 | region | Google cloud region where the resource will be created. | `string` | `"us-west1"` | no |
+| firestore_collection_id | Firestore collection id. | `string` | `"fileMetadata"` | no |
 
 ## Outputs
 
@@ -75,3 +76,4 @@ resources of this module:
 - firestore.googleapis.com
 - vpcaccess.googleapis.com
 - monitoring.googleapis.com
+- cloudtrace.googleapis.com

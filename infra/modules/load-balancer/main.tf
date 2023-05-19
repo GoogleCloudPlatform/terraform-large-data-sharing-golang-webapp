@@ -16,7 +16,7 @@
 
 resource "google_compute_backend_bucket" "cdn" {
   project     = var.project_id
-  name        = "lds-cdn"
+  name        = "lds-cdn-golang"
   bucket_name = var.bucket_name
   enable_cdn  = true
   cdn_policy {
@@ -36,7 +36,7 @@ resource "google_compute_backend_bucket" "cdn" {
 }
 
 resource "google_compute_region_network_endpoint_group" "client" {
-  name                  = "lds-client"
+  name                  = "lds-client-golang"
   network_endpoint_type = "SERVERLESS"
   region                = var.region
   cloud_run {
@@ -45,7 +45,7 @@ resource "google_compute_region_network_endpoint_group" "client" {
 }
 
 resource "google_compute_backend_service" "lds" {
-  name                  = "lds"
+  name                  = "lds-golang"
   load_balancing_scheme = "EXTERNAL"
   backend {
     group = google_compute_region_network_endpoint_group.client.id
@@ -54,7 +54,7 @@ resource "google_compute_backend_service" "lds" {
 
 resource "google_compute_url_map" "lds" {
   project         = var.project_id
-  name            = "lds-lb"
+  name            = "lds-lb-golang"
   default_service = google_compute_backend_bucket.cdn.id
   host_rule {
     path_matcher = "client"
@@ -76,14 +76,14 @@ resource "google_compute_url_map" "lds" {
 
 resource "google_compute_target_http_proxy" "lds" {
   project = var.project_id
-  name    = "lds-proxy"
+  name    = "lds-proxy-golang"
   url_map = google_compute_url_map.lds.self_link
 }
 
 resource "google_compute_global_forwarding_rule" "lds" {
   project    = var.project_id
   labels     = var.labels
-  name       = "lds-frontend"
+  name       = "lds-frontend-golang"
   target     = google_compute_target_http_proxy.lds.self_link
   ip_address = google_compute_global_address.lds.address
   port_range = "80"
@@ -91,7 +91,7 @@ resource "google_compute_global_forwarding_rule" "lds" {
 
 resource "google_compute_global_address" "lds" {
   project      = var.project_id
-  name         = "lds-external-ip"
+  name         = "lds-external-ip-golang"
   ip_version   = "IPV4"
   address_type = "EXTERNAL"
 }
