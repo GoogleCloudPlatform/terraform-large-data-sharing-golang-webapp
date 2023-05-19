@@ -47,13 +47,13 @@ locals {
   firestore_field_tags    = length(var.lds_firestore_field_tags) == 0 ? "tags" : var.lds_firestore_field_tags
   firestore_field_orderNo = length(var.lds_firestore_field_orderNo) == 0 ? "orderNo" : var.lds_firestore_field_orderNo
   collection_fields = {
-    "${local.firestore}" = [
+    "${var.lds_firestore}-golang" = [
       {
-        field_path   = "${local.firestore_field_tags}"
+        field_path   = local.firestore_field_tags
         array_config = "CONTAINS"
       },
       {
-        field_path = "${local.firestore_field_orderNo}"
+        field_path = local.firestore_field_orderNo
         order      = "DESCENDING"
       },
     ]
@@ -160,27 +160,27 @@ module "cloud_run_server" {
     },
     {
       name  = "LDS_FIRESTORE"
-      value = "${local.firestore}"
+      value = "${local.firestore}-golang"
     },
     {
       name  = "LDS_FIRESTORE_FIELD_PATH"
-      value = "${local.firestore_field_path}"
+      value = local.firestore_field_path
     },
     {
       name  = "LDS_FIRESTORE_FIELD_NAME"
-      value = "${local.firestore_field_name}"
+      value = local.firestore_field_name
     },
     {
       name  = "LDS_FIRESTORE_FIELD_SIZE"
-      value = "${local.firestore_field_size}"
+      value = local.firestore_field_size
     },
     {
       name  = "LDS_FIRESTORE_FIELD_TAGS"
-      value = "${local.firestore_field_tags}"
+      value = local.firestore_field_tags
     },
     {
       name  = "LDS_FIRESTORE_FIELD_ORDER_NO"
-      value = "${local.firestore_field_orderNo}"
+      value = local.firestore_field_orderNo
     },
   ]
   ingress                 = "INGRESS_TRAFFIC_INTERNAL_ONLY"

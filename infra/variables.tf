@@ -88,7 +88,7 @@ variable "labels" {
 variable "lds_firestore" {
   description = "Firestore collection id"
   type        = string
-  default     = "fileMetadata-cdn-golang"
+  default     = "fileMetadata-cdn"
 }
 
 variable "lds_firestore_field_path" {
