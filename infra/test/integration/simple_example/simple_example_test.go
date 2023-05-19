@@ -59,7 +59,7 @@ func TestSimpleExample(t *testing.T) {
 		}
 		utils.Poll(t, isServing, 10, time.Minute*1)
 
-		// Check cloud run jobs status
+		// Check Cloud Run jobs status
 		isJobCompletion := func() (bool, error) {
 			cloudRunJobs := gcloud.Run(t, ("beta run jobs list --format=json"), gcloudArgs).Array()
 			var jobResults []bool
@@ -71,10 +71,10 @@ func TestSimpleExample(t *testing.T) {
 				if jobCompletionTime == "" || jobExecutionCount < 1 {
 					fmt.Printf("Job %s is not completed\n", jobName)
 					jobResults = append(jobResults, false)
-				} else {
-					fmt.Printf("Job %s is completed\n", jobName)
-					jobResults = append(jobResults, true)
+					continue
 				}
+				fmt.Printf("Job %s is completed\n", jobName)
+				jobResults = append(jobResults, true)
 			}
 			if allTrue(jobResults) {
 				return false, nil
