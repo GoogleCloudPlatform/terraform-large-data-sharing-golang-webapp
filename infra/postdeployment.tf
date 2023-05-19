@@ -26,7 +26,7 @@ resource "google_cloud_run_v2_job" "migrate_data" {
   depends_on = [
     module.project_services,
   ]
-  name         = "migration-data-job"
+  name         = "migration-data-job-golang"
   location     = var.region
   launch_stage = "BETA"
   template {
@@ -53,7 +53,7 @@ resource "google_cloud_run_v2_job" "reset_data" {
   depends_on = [
     module.project_services,
   ]
-  name         = "reset-data-job"
+  name         = "reset-data-job-golang"
   location     = var.region
   launch_stage = "BETA"
   template {
@@ -91,7 +91,7 @@ resource "google_compute_instance" "initialization" {
     module.cloud_run_client,
   ]
 
-  name         = "lds-initialization"
+  name         = "lds-initialization-golang"
   machine_type = "n1-standard-1"
   zone         = data.google_compute_zones.available.names[0]
 

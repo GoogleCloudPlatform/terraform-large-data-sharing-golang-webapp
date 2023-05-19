@@ -16,6 +16,7 @@
 
 | Name | Description |
 |------|-------------|
+| backend\_bucket\_name | The name of the backend bucket used for Cloud CDN |
 | lb\_external\_ip | Frontend IP address of the load balancer |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
