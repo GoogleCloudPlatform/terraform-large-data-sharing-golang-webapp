@@ -1,0 +1,119 @@
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-large-data-sharing-golang-webapp
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Large data sharing Golang web app
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp.git
+      sourceType: git
+    description:
+      tagline: Create a web app to share large quantities of files to users across the globe
+      detailed: This solution quickly and securely deploys a three-tierd web app with a Javascript front end, a Golang back end, and a Firestore database on GCP. The goal of this solution is to utilize Google's Cloud CDN to serve large quantities of files (e.g., images, videos, documents) to users across the globe.
+  content:
+    subBlueprints:
+    - name: cloudrun
+      location: modules/cloudrun
+    - name: firestore
+      location: modules/firestore
+    - name: load-balancer
+      location: modules/load-balancer
+    - name: networking
+      location: modules/networking
+    - name: storage
+      location: modules/storage
+    examples:
+    - name: simple_example
+      location: examples/simple_example
+  interfaces:
+    variables:
+    - name: bucket_location
+      description: Bucket location. https://cloud.google.com/storage/docs/locations
+      varType: string
+      defaultValue: US
+    - name: disable_services_on_destroy
+      description: Whether project services will be disabled when the resources are destroyed.
+      varType: bool
+      defaultValue: false
+    - name: init
+      description: Initialize resource or not
+      varType: bool
+      defaultValue: true
+    - name: labels
+      description: A map of key/value label pairs to assign to the resources.
+      varType: map(string)
+      defaultValue:
+        app: large-data-sharing-golang
+    - name: lds_client_image
+      description: Docker image for frontend
+      varType: string
+      defaultValue: gcr.io/hsa-resources-public/hsa-lds-golang-frontend:latest
+    - name: lds_firestore
+      description: Firestore collection id
+      varType: string
+      defaultValue: fileMetadata-cdn
+    - name: lds_firestore_field_name
+      description: 'Firestore field: name'
+      varType: string
+      defaultValue: name
+    - name: lds_firestore_field_orderNo
+      description: 'Firestore field: orderNo'
+      varType: string
+      defaultValue: orderNo
+    - name: lds_firestore_field_path
+      description: 'Firestore field: path'
+      varType: string
+      defaultValue: path
+    - name: lds_firestore_field_size
+      description: 'Firestore field: size'
+      varType: string
+      defaultValue: size
+    - name: lds_firestore_field_tags
+      description: 'Firestore field: tags'
+      varType: string
+      defaultValue: tags
+    - name: lds_initialization_archive_file_name
+      description: Archive file's name in lds-initialization bucket
+      varType: string
+      defaultValue: initialization.tar.gz
+    - name: lds_initialization_bucket_name
+      description: Bucket for cloud run job
+      varType: string
+      defaultValue: lds-resources-236348946525
+    - name: lds_server_image
+      description: Docker image for backend
+      varType: string
+      defaultValue: gcr.io/hsa-resources-public/hsa-lds-golang-backend:latest
+    - name: project_id
+      description: GCP project ID.
+      varType: string
+      required: true
+    - name: region
+      description: Google cloud region where the resource will be created.
+      varType: string
+      defaultValue: us-west1
+    outputs:
+    - name: backend_bucket_name
+      description: The name of the backend bucket used for Cloud CDN
+    - name: bucket_name
+      description: Bucket name
+    - name: lb_external_ip
+      description: Frontend IP address of the load balancer
+    - name: neos_walkthrough_url
+      description: Neos Tutorial URL
+  requirements:
+    roles:
+    - level: Project
+      roles:
+      - roles/owner
+    services:
+    - cloudresourcemanager.googleapis.com
+    - compute.googleapis.com
+    - run.googleapis.com
+    - iam.googleapis.com
+    - firestore.googleapis.com
+    - vpcaccess.googleapis.com
+    - serviceusage.googleapis.com
