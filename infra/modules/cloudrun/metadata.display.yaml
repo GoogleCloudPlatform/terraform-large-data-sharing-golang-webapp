@@ -1,0 +1,67 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-large-data-sharing-golang-webapp-display
+spec:
+  info:
+    title: cloudrun module
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp.git
+      sourceType: git
+      dir: cloudrun
+  ui:
+    input:
+      variables:
+        cloud_run_image:
+          name: cloud_run_image
+          title: Cloud Run Image
+        cloud_run_name:
+          name: cloud_run_name
+          title: Cloud Run Name
+        container_port:
+          name: container_port
+          title: Container Port
+        env_vars:
+          name: env_vars
+          title: Env Vars
+        ingress:
+          name: ingress
+          title: Ingress
+        labels:
+          name: labels
+          title: Labels
+        limits:
+          name: limits
+          title: Limits
+        liveness_probe:
+          name: liveness_probe
+          title: Liveness Probe
+        location:
+          name: location
+          title: Location
+        project_id:
+          name: project_id
+          title: Project Id
+        service_account_email:
+          name: service_account_email
+          title: Service Account Email
+        vpc_access_connector_id:
+          name: vpc_access_connector_id
+          title: Vpc Access Connector Id
+        vpc_egress:
+          name: vpc_egress
+          title: Vpc Egress

@@ -1,0 +1,128 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-large-data-sharing-golang-webapp
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: cloudrun module
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp.git
+      sourceType: git
+      dir: cloudrun
+    actuationTool:
+      flavor: Terraform
+      version: '>= 0.13'
+    description: {}
+  content:
+    examples:
+    - name: simple_example
+      location: examples/simple_example
+  interfaces:
+    variables:
+    - name: cloud_run_image
+      description: Docker image for Cloud Run
+      varType: string
+      required: true
+    - name: cloud_run_name
+      description: Name of Cloud Run
+      varType: string
+      required: true
+    - name: container_port
+      description: Container port
+      varType: string
+      required: true
+    - name: env_vars
+      description: Environment variables
+      varType: |-
+        list(object({
+            value = string
+            name  = string
+          }))
+      defaultValue: []
+    - name: ingress
+      description: Ingress of Cloud Run
+      varType: string
+      required: true
+    - name: labels
+      description: A map of key/value label pairs to assign to the bucket
+      varType: map(string)
+      required: true
+    - name: limits
+      description: Resource limits to the container
+      varType: map(string)
+      required: true
+    - name: liveness_probe
+      description: helth check
+      varType: |-
+        object(
+            {
+              initial_delay_seconds = number,
+              timeout_seconds       = number,
+              period_seconds        = number,
+              failure_threshold     = number,
+              http_get = object(
+                {
+                  path = string
+                }
+              )
+            }
+          )
+      defaultValue:
+        failure_threshold: 3
+        http_get:
+          path: /
+        initial_delay_seconds: 600
+        period_seconds: 300
+        timeout_seconds: 60
+    - name: location
+      description: Google cloud location where the resource will be created
+      varType: string
+      required: true
+    - name: project_id
+      description: GCP project ID
+      varType: string
+      required: true
+    - name: service_account_email
+      description: cloud run service account email
+      varType: string
+      required: true
+    - name: vpc_access_connector_id
+      description: VPC access connector id
+      varType: string
+      required: true
+    - name: vpc_egress
+      description: VPC access egress
+      varType: string
+      required: true
+    outputs:
+    - name: cloud_run
+      description: Cloud Run service
+  requirements:
+    roles:
+    - level: Project
+      roles:
+      - roles/owner
+    services:
+    - cloudresourcemanager.googleapis.com
+    - compute.googleapis.com
+    - run.googleapis.com
+    - iam.googleapis.com
+    - firestore.googleapis.com
+    - vpcaccess.googleapis.com
+    - serviceusage.googleapis.com
