@@ -15,9 +15,13 @@
  */
 
 locals {
-  // TODO: de scope to required roles
   int_required_roles = [
-    "roles/owner"
+    "roles/storage.admin",
+    "roles/iam.serviceAccountAdmin",
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/editor",
+    "roles/run.admin",
+    "roles/datastore.owner",
   ]
 }
 
