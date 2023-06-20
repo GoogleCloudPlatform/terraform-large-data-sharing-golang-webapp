@@ -15,14 +15,16 @@
 apiVersion: blueprints.cloud.google.com/v1alpha1
 kind: BlueprintMetadata
 metadata:
-  name: terraform-large-data-sharing-golang-webapp-display
+  name: terraform-large-data-sharing-golang-webapp-load-balancer-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
 spec:
   info:
     title: load-balancer module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp.git
       sourceType: git
-      dir: load-balancer
+      dir: /infra/modules/load-balancer
   ui:
     input:
       variables:

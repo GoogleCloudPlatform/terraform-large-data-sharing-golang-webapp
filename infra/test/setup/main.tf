@@ -32,6 +32,8 @@ module "project" {
     "iam.googleapis.com",
     "firestore.googleapis.com",
     "vpcaccess.googleapis.com",
-    "serviceusage.googleapis.com"
+    "serviceusage.googleapis.com",
+    "monitoring.googleapis.com",
+    "cloudtrace.googleapis.com"
   ]
 }
