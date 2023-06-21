@@ -32,20 +32,23 @@ spec:
       configurationSecs: 60
       deploymentSecs: 300
     costEstimate:
-+      description: cost details
-+      url: https://cloud.google.com/products/calculator#id=d2ad2fa1-53ea-4ea4-bbfb-490f69611e0a
+      description: cost details
+      url: https://cloud.google.com/products/calculator#id=d2ad2fa1-53ea-4ea4-bbfb-490f69611e0a
     cloudProducts:
     - productId: SERVERLESS_SECTION
+      pageUrl: run
       label: Cloud Run
     - productId: LOAD_BALANCING_SECTION
+      pageUrl: net-services/loadbalancing
       label: Cloud LoadBalancer
     - productId: search_FILESTORE_SECTION
-      label: Firestore
+      pageUrl: filestore
+      label: Filestore
     - productId: STORAGE_SECTION
+      pageUrl: storage
       label: Cloud Storage
     - productId: LOAD_BALANCING_SECTION
-      pageUrl: LOAD_BALANCING_SECTION/cloud-cdn
-      isExternal: false
+      pageUrl: net-services/cdn
   content:
     architecture:
       diagramUrl: www.gstatic.com/pantheon/images/solutions/large_data_sharing_golang_webapp_architecture_v1.svg
@@ -55,11 +58,11 @@ spec:
       - The backend stores the files (i.e., data) in Cloud Storage and the metadata in Firestore.
       - User requests to view a file are routed to the Cloud CDN if there is a CDN cache hit.
       - User requests to view a file are routed to the Cloud Storage if there is a CDN cache miss.
-      documentation:
-      - title: Large Data Sharing Golang Web App
-        url: https://cloud.google.com/architecture/big-data-analytics/large-data-sharing-go
-      - title: Tutorial Walkthrough ID
-        url: solutions-in-console--large-data-sharing--large-data-sharing-golang_tour
+    documentation:
+    - title: Large Data Sharing Golang Web App
+      url: https://cloud.google.com/architecture/big-data-analytics/large-data-sharing-go
+    - title: Tutorial Walkthrough ID
+      url: solutions-in-console--large-data-sharing--large-data-sharing-golang_tour
     subBlueprints:
     - name: cloudrun
       location: modules/cloudrun
