@@ -17,11 +17,17 @@
 locals {
   int_required_roles = [
     "roles/storage.admin",
-    "roles/iam.serviceAccountAdmin",
-    "roles/resourcemanager.projectIamAdmin",
-    "roles/editor",
-    "roles/run.admin",
     "roles/datastore.owner",
+    "roles/appengine.appAdmin",
+    "roles/compute.admin",
+    "roles/compute.networkAdmin",
+    "roles/cloudtrace.admin",
+    "roles/iam.serviceAccountAdmin",
+    "roles/iam.serviceAccountUser",
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/run.admin",
+    "roles/monitoring.admin",
+    "roles/vpcaccess.admin",
   ]
 }
 

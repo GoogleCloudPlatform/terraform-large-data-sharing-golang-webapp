@@ -1,4 +1,4 @@
-# Large data sharing Golang web app
+# Large Data Sharing Golang Web App
 
 ## Description
 
@@ -8,7 +8,7 @@ Create a web app to share large quantities of files to users across the globe
 
 ### Detailed
 
-This solution quickly and securely deploys a three-tierd web app with a Javascript front end, a Golang back end, and a Firestore database on GCP. The goal of this solution is to utilize Google's Cloud CDN to serve large quantities of files (e.g., images, videos, documents) to users across the globe.
+This solution provides an end-to-end demonstration on how a developer would architect an application that can handle large quantities of files operations on GCP. The goal of this solution is to utilize Google Cloud CDN to serve large quantities of files.
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
