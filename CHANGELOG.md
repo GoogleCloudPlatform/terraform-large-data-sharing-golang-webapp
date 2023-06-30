@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/compare/v0.1.1...v0.1.2) (2023-06-30)
+
+
+### Bug Fixes
+
+* **deps:** update module github.com/googlecloudplatform/cloud-foundation-toolkit/infra/blueprint-test to v0.6.1 ([#33](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/33)) ([9473e18](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/9473e188e2e5833e6446b6531d72d63473d6457c))
+
 ## [0.1.1](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/compare/v0.1.0...v0.1.1) (2023-06-30)
 
 
