@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.1](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/compare/v0.1.0...v0.1.1) (2023-06-30)
+
+
+### Bug Fixes
+
+* changed TF actuation perms for CFT tests ([#29](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/29)) ([add6af9](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/add6af97f3d4f4bf1169661b0fc5f29b148b60a4))
+* **deps:** update module github.com/googlecloudplatform/cloud-foundation-toolkit/infra/blueprint-test to v0.6.0 ([#30](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/30)) ([6e337fd](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/6e337fdf9e830950f9a81ea6784c9998f3629485))
+* **deps:** update module github.com/stretchr/testify to v1.8.4 ([#24](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/24)) ([e6b045b](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/e6b045bb111641851d8679c76464d48427062d3f))
+* made core metadata compliant with the schema ([fc2e8b1](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/fc2e8b1d3ffc8e11f3c3d527a8241744b8ba3136))
+* Update int.cloudbuild.yaml to use LR billing ([#27](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/27)) ([3d77373](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/3d7737342a4f430475ca1556af0cc644737cfd5d))
+* update metadata ([#22](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/22)) ([1edab3f](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/1edab3fdf7928476bc069e6440572da855e602f6))
+* update neos toc url ([#32](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/32)) ([3a7bf72](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/3a7bf7211999a3c6c71dd66bbfbbc11a9059f887))
+
 ## 0.1.0 (2023-05-19)
 
 
