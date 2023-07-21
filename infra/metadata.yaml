@@ -131,7 +131,7 @@ spec:
     - name: lds_initialization_bucket_name
       description: Bucket for cloud run job
       varType: string
-      defaultValue: lds-resources-236348946525
+      defaultValue: jss-resources
     - name: lds_server_image
       description: Docker image for backend
       varType: string

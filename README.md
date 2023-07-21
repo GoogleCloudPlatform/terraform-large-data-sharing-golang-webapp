@@ -29,7 +29,7 @@ The resources/services/activations/deletions that this module will create/trigge
 | labels | A map of key/value label pairs to assign to the resources. | `map(string)` | <pre>{<br>  "app": "large-data-sharing"<br>}</pre> | no |
 | lds\_client\_image | Docker image for frontend | `string` | `"gcr.io/hsa-resources-public/hsa-lds-golang-frontend:latest"` | no |
 | lds\_initialization\_archive\_file\_name | Archive file's name in lds-initialization bucket | `string` | `"initialization.tar.gz"` | no |
-| lds\_initialization\_bucket\_name | Bucket for cloud run job | `string` | `"lds-resources-236348946525"` | no |
+| lds\_initialization\_bucket\_name | Bucket for cloud run job | `string` | `"jss-resources"` | no |
 | lds\_server\_image | Docker image for backend | `string` | `"gcr.io/hsa-resources-public/hsa-lds-golang-backend:latest"` | no |
 | project\_id | GCP project ID. | `string` | n/a | yes |
 | region | Google cloud region where the resource will be created. | `string` | `"us-west1"` | no |
