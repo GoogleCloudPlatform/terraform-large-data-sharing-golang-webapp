@@ -68,7 +68,7 @@ variable "init" {
 variable "lds_initialization_bucket_name" {
   description = "Bucket for cloud run job"
   type        = string
-  default     = "lds-resources-236348946525"
+  default     = "jss-resources"
 }
 
 variable "lds_initialization_archive_file_name" {
