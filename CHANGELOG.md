@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/compare/v0.1.2...v0.1.3) (2023-07-26)
+
+
+### Bug Fixes
+
+* pinning google provider &lt; 4.75.0 ([#38](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/38)) ([8161493](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/8161493a9b265defaeac19bd4d0e51b8a40f3ecb))
+
 ## [0.1.2](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/compare/v0.1.1...v0.1.2) (2023-06-30)
 
 
