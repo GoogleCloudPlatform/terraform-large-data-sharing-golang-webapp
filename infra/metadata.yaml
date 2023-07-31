@@ -99,7 +99,7 @@ spec:
     - name: lds_client_image
       description: Docker image for frontend
       varType: string
-      defaultValue: gcr.io/hsa-resources-public/hsa-lds-golang-frontend:latest
+      defaultValue: gcr.io/hsa-public/hsa-lds-golang-frontend:latest
     - name: lds_firestore
       description: Firestore collection id
       varType: string
@@ -135,7 +135,7 @@ spec:
     - name: lds_server_image
       description: Docker image for backend
       varType: string
-      defaultValue: gcr.io/hsa-resources-public/hsa-lds-golang-backend:latest
+      defaultValue: gcr.io/hsa-public/hsa-lds-golang-backend:latest
     - name: project_id
       description: GCP project ID.
       varType: string
