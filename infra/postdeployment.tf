@@ -92,7 +92,7 @@ resource "google_compute_instance" "initialization" {
   ]
 
   name         = "lds-initialization-golang"
-  machine_type = "n1-standard-1"
+  machine_type = "n2-standard-2"
   zone         = data.google_compute_zones.available.names[0]
 
   boot_disk {
