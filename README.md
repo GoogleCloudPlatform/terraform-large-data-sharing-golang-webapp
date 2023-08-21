@@ -1,4 +1,4 @@
-# Large data sharing Golang web app
+# Large data sharing Go web app
 
 ## Description
 
