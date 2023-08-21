@@ -8,7 +8,7 @@ Create a web app to share large quantities of files to users across the globe
 
 ### Detailed
 
-This solution quickly and securely deploys a three-tierd web app with a Javascript front end, a Golang back end, and a Firestore database on GCP. The goal of this solution is to utilize Google's Cloud CDN to serve large quantities of files (e.g., images, videos, documents) to users across the globe.
+This solution quickly and securely deploys a three-tiered web app with a Javascript front end, a Go back end, and a Firestore database on GCP. The goal of this solution is to utilize Google's Cloud CDN to serve large quantities of files (e.g., images, videos, documents) to users across the globe.
 
 The resources/services/activations/deletions that this module will create/trigger are:
 
