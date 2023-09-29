@@ -15,7 +15,6 @@
  */
 
 resource "google_firestore_database" "default" {
-  count       = var.init ? 1 : 0
   project     = var.project_id
   name        = var.firestore_db_name
   location_id = "nam5" //US
@@ -26,6 +25,7 @@ resource "google_firestore_index" "meta" {
 
   for_each   = var.collection_fields
   collection = each.key
+  database   = google_firestore_database.default.name
   dynamic "fields" {
     for_each = each.value
     iterator = field
@@ -34,6 +34,5 @@ resource "google_firestore_index" "meta" {
       order        = lookup(field.value, "order", null)
       array_config = lookup(field.value, "array_config", null)
     }
-    database = google_firestore_database.default.name
   }
 }
