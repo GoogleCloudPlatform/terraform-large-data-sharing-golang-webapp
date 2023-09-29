@@ -48,7 +48,7 @@ locals {
   firestore_field_tags    = length(var.lds_firestore_field_tags) == 0 ? "tags" : var.lds_firestore_field_tags
   firestore_field_orderNo = length(var.lds_firestore_field_orderNo) == 0 ? "orderNo" : var.lds_firestore_field_orderNo
   collection_fields = {
-    "${var.lds_firestore}" = [
+    var.lds_firestore = [
       {
         field_path   = local.firestore_field_tags
         array_config = "CONTAINS"
@@ -162,7 +162,7 @@ module "cloud_run_server" {
     },
     {
       name  = "LDS_FIRESTORE_COLLECTION"
-      value = "${local.firestore}"
+      value = local.firestore
     },
     {
       name  = "LDS_FIRESTORE_DATABASE"
