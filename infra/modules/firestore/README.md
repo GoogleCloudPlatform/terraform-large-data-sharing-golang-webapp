@@ -6,8 +6,8 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | collection\_fields | collection id with respect to its fields | `map(any)` | n/a | yes |
-| project\_id | GCP project ID. | `string` | n/a | yes |
 | firestore\_db\_name | firestore database name | `string` | n/a | yes |
+| project\_id | GCP project ID. | `string` | n/a | yes |
 
 ## Outputs
 

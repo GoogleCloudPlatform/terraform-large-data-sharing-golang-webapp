@@ -5,7 +5,6 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| init | Initialize resource or not | `bool` | `true` | no |
 | project\_id | GCP project for provisioning cloud resources. | `any` | n/a | yes |
 
 ## Outputs
