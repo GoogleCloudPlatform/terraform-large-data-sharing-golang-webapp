@@ -91,6 +91,7 @@ module "firestore" {
   project_id        = var.project_id
   init              = var.init
   collection_fields = local.collection_fields
+  random_code       = random_id.random_code.hex
 }
 
 resource "random_id" "random_code" {

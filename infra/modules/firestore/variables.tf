@@ -28,3 +28,8 @@ variable "collection_fields" {
   description = "collection id with respect to its fields"
   type        = map(any)
 }
+
+variable "random_code" {
+  description = "random code for database uniqueness"
+  type        = string
+}
