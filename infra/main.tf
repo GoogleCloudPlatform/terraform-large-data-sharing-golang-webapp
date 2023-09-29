@@ -41,6 +41,7 @@ data "google_project" "project" {
 locals {
   resource_path           = "resource"
   firestore               = length(var.lds_firestore) == 0 ? "fileMetadata-cdn-golang" : var.lds_firestore
+  firestore_db_name       = "large-data-sharing-${random_id.random_code.hex}"
   firestore_field_path    = length(var.lds_firestore_field_path) == 0 ? "path" : var.lds_firestore_field_path
   firestore_field_name    = length(var.lds_firestore_field_name) == 0 ? "name" : var.lds_firestore_field_name
   firestore_field_size    = length(var.lds_firestore_field_size) == 0 ? "size" : var.lds_firestore_field_size
@@ -91,7 +92,7 @@ module "firestore" {
   project_id        = var.project_id
   init              = var.init
   collection_fields = local.collection_fields
-  random_code       = random_id.random_code.hex
+  firestore_db_name = local.firestore_db_name
 }
 
 resource "random_id" "random_code" {
@@ -162,6 +163,10 @@ module "cloud_run_server" {
     {
       name  = "LDS_FIRESTORE"
       value = "${local.firestore}-golang"
+    },
+    {
+      name  = "LDS_FIRESTORE_DATABASE"
+      value = local.firestore_db_name
     },
     {
       name  = "LDS_FIRESTORE_FIELD_PATH"

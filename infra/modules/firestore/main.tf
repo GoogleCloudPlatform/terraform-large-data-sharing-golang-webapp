@@ -17,7 +17,7 @@
 resource "google_firestore_database" "default" {
   count       = var.init ? 1 : 0
   project     = var.project_id
-  name        = "large-data-sharing-${var.random_code}"
+  name        = var.firestore_db_name
   location_id = "nam5" //US
   type        = "FIRESTORE_NATIVE"
 }

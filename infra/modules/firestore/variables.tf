@@ -29,7 +29,7 @@ variable "collection_fields" {
   type        = map(any)
 }
 
-variable "random_code" {
-  description = "random code for database uniqueness"
+variable "firestore_db_name" {
+  description = "firestore database name"
   type        = string
 }
