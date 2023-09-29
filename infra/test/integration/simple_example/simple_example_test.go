@@ -53,8 +53,9 @@ func TestSimpleExample(t *testing.T) {
 		assert.True(backendBucket.Get("enableCdn").Bool())
 
 		// check if the firestore database exists
-		firestoreDbName := gcloud.Run(t, fmt.Sprintf("alpha firestore databases describe --format=json"), gcloudArgs)
-		assert.NotEmpty(firestoreDbName)
+		firestoreDbName := example.GetStringOutput("db_name")
+		firestoreDb := gcloud.Run(t, fmt.Sprintf("firestore databases describe --database=%s --format=json", firestoreDbName), gcloudArgs)
+		assert.NotEmpty(firestoreDb)
 
 		// check app e2e is working
 		lb_global_ip := example.GetStringOutput("lb_global_ip")
@@ -90,16 +91,16 @@ func TestSimpleExample(t *testing.T) {
 			}
 			return true, nil
 		}
-		utils.Poll(t, isJobCompletion, 180, time.Second * 3)
+		utils.Poll(t, isJobCompletion, 180, time.Second*3)
 	})
 	example.Test()
 }
 
 func allTrue(arr []bool) bool {
-    for _, value := range arr {
-        if !value {
-            return false
-        }
-    }
-    return true
+	for _, value := range arr {
+		if !value {
+			return false
+		}
+	}
+	return true
 }
