@@ -17,8 +17,3 @@
 variable "project_id" {
   description = "GCP project for provisioning cloud resources."
 }
-
-variable "init" {
-  description = "Initialize resource or not"
-  default     = true
-}
