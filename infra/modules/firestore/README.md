@@ -11,6 +11,8 @@
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| db\_name | Firestore database name |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

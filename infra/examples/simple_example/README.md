@@ -12,6 +12,7 @@
 | Name | Description |
 |------|-------------|
 | backend\_bucket\_name | The name of the backend bucket used for Cloud CDN |
+| db\_name | The Firestore database name |
 | cdn\_bucket\_name | The bucket name for cdn |
 | lb\_global\_ip | Frontend IP address of the load balancer |
 

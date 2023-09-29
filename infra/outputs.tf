@@ -30,7 +30,7 @@ output "bucket_name" {
 }
 
 output "db_name" {
-  description = "Bucket name"
+  description = "Firestore database name"
   value       = module.firestore.db_name
 }
 

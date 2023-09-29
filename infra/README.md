@@ -45,6 +45,7 @@ The resources/services/activations/deletions that this module will create/trigge
 |------|-------------|
 | backend\_bucket\_name | The name of the backend bucket used for Cloud CDN |
 | bucket\_name | Bucket name |
+| db\_name | Firestore database name |
 | lb\_external\_ip | Frontend IP address of the load balancer |
 | neos\_walkthrough\_url | Neos Tutorial URL |
 

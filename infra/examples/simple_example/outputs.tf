@@ -28,3 +28,8 @@ output "cdn_bucket_name" {
   description = "The bucket name for cdn"
   value       = module.simple.bucket_name
 }
+
+output "db_name" {
+  description = "The Firestore database name"
+  value       = module.simple.db_name
+}
