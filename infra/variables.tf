@@ -58,13 +58,6 @@ variable "lds_client_image" {
   default     = "gcr.io/hsa-resources-public/hsa-lds-golang-frontend:latest"
 }
 
-variable "init" {
-  type        = bool
-  description = "Initialize resource or not"
-  default     = true
-}
-
-
 variable "lds_initialization_bucket_name" {
   description = "Bucket for cloud run job"
   type        = string
