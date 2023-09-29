@@ -23,9 +23,6 @@ resource "google_firestore_database" "default" {
 }
 
 resource "google_firestore_index" "meta" {
-  depends_on = [
-    google_firestore_database.default
-  ]
 
   for_each   = var.collection_fields
   collection = each.key
@@ -36,6 +33,7 @@ resource "google_firestore_index" "meta" {
       field_path   = lookup(field.value, "field_path", null)
       order        = lookup(field.value, "order", null)
       array_config = lookup(field.value, "array_config", null)
+      database     = google_firestore_database.default.name
     }
   }
 }
