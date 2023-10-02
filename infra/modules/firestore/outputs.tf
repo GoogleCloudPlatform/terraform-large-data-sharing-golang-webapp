@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
-variable "project_id" {
-  description = "GCP project for provisioning cloud resources."
+output "db_name" {
+  description = "Firestore database name"
+  value       = google_firestore_database.default.name
 }

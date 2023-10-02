@@ -17,5 +17,4 @@
 module "simple" {
   source     = "../../"
   project_id = var.project_id
-  init       = var.init
 }

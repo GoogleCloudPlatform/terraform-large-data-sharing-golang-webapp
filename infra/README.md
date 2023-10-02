@@ -25,7 +25,6 @@ The resources/services/activations/deletions that this module will create/trigge
 |------|-------------|------|---------|:--------:|
 | bucket\_location | Bucket location. https://cloud.google.com/storage/docs/locations | `string` | `"US"` | no |
 | disable\_services\_on\_destroy | Whether project services will be disabled when the resources are destroyed. | `bool` | `false` | no |
-| init | Initialize resource or not | `bool` | `true` | no |
 | labels | A map of key/value label pairs to assign to the resources. | `map(string)` | <pre>{<br>  "app": "large-data-sharing-golang"<br>}</pre> | no |
 | lds\_client\_image | Docker image for frontend | `string` | `"gcr.io/hsa-resources-public/hsa-lds-golang-frontend:latest"` | no |
 | lds\_firestore | Firestore collection id | `string` | `"fileMetadata-cdn"` | no |
@@ -36,7 +35,7 @@ The resources/services/activations/deletions that this module will create/trigge
 | lds\_firestore\_field\_tags | Firestore field: tags | `string` | `"tags"` | no |
 | lds\_initialization\_archive\_file\_name | Archive file's name in lds-initialization bucket | `string` | `"initialization.tar.gz"` | no |
 | lds\_initialization\_bucket\_name | Bucket for cloud run job | `string` | `"jss-resources"` | no |
-| lds\_server\_image | Docker image for backend | `string` | `"gcr.io/hsa-resources-public/hsa-lds-golang-backend:latest"` | no |
+| lds\_server\_image | Docker image for backend | `string` | `"gcr.io/hsa-public/hsa-lds-golang-backend:firestore-db"` | no |
 | project\_id | GCP project ID. | `string` | n/a | yes |
 | region | Google cloud region where the resource will be created. | `string` | `"us-west1"` | no |
 
@@ -46,6 +45,7 @@ The resources/services/activations/deletions that this module will create/trigge
 |------|-------------|
 | backend\_bucket\_name | The name of the backend bucket used for Cloud CDN |
 | bucket\_name | Bucket name |
+| db\_name | Firestore database name |
 | lb\_external\_ip | Frontend IP address of the load balancer |
 | neos\_walkthrough\_url | Neos Tutorial URL |
 
