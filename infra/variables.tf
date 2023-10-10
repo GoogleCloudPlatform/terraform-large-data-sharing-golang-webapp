@@ -49,7 +49,7 @@ variable "bucket_location" {
 variable "lds_server_image" {
   description = "Docker image for backend"
   type        = string
-  default     = "gcr.io/hsa-public/hsa-lds-golang-backend:latest"
+  default     = "gcr.io/hsa-public/hsa-lds-golang-backend:firestore-db"
 }
 
 variable "lds_client_image" {
@@ -57,13 +57,6 @@ variable "lds_client_image" {
   type        = string
   default     = "gcr.io/hsa-public/hsa-lds-golang-frontend:latest"
 }
-
-variable "init" {
-  type        = bool
-  description = "Initialize resource or not"
-  default     = true
-}
-
 
 variable "lds_initialization_bucket_name" {
   description = "Bucket for cloud run job"

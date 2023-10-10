@@ -29,6 +29,11 @@ output "bucket_name" {
   value       = module.storage.bucket_name
 }
 
+output "db_name" {
+  description = "Firestore database name"
+  value       = module.firestore.db_name
+}
+
 output "neos_walkthrough_url" {
   description = "Neos Tutorial URL"
   value       = "https://console.cloud.google.com/products/solutions/deployments?walkthrough_id=panels--sic--large-data-sharing-golang_toc"
