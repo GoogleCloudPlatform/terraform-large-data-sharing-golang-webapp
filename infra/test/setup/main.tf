@@ -34,6 +34,7 @@ module "project" {
     "vpcaccess.googleapis.com",
     "serviceusage.googleapis.com",
     "monitoring.googleapis.com",
-    "cloudtrace.googleapis.com"
+    "cloudtrace.googleapis.com",
+    "workflows.googleapis.com",
   ]
 }

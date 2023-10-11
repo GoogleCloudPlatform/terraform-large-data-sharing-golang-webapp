@@ -76,48 +76,16 @@ resource "google_cloud_run_v2_job" "reset_data" {
   labels = var.labels
 }
 
-data "google_compute_zones" "available" {
-  depends_on = [
-    module.project_services,
-  ]
-  project = var.project_id
-  region  = var.region
+# execute workflows after all resources are created
+# # get a token to execute the workflows
+data "google_client_config" "current" {
 }
 
-resource "google_compute_instance" "initialization" {
-  depends_on = [
-    module.project_services,
-    module.cloud_run_server,
-    module.cloud_run_client,
-  ]
-
-  name         = "lds-initialization-golang"
-  machine_type = "n1-standard-1"
-  zone         = data.google_compute_zones.available.names[0]
-
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-11"
-    }
-  }
-
-  network_interface {
-    network    = module.networking.netowrk_self_link
-    subnetwork = module.networking.subnet_netowrk_self_link
-  }
-
-  service_account {
-    email = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
-    scopes = [
-      "cloud-platform"
-    ]
-  }
-
-  metadata_startup_script = <<EOT
-    #!/bin/bash
-    gcloud beta run jobs execute ${google_cloud_run_v2_job.reset_data.name} --wait --project ${var.project_id} --region ${var.region}
-    gcloud beta run jobs execute ${google_cloud_run_v2_job.migrate_data.name} --wait --project ${var.project_id} --region ${var.region}
-    shutdown -h now
-  EOT
-  labels                  = var.labels
+# # execute the post init workflow
+data "http" "call_workflows_post_init" {
+  url    = "https://workflowexecutions.googleapis.com/v1/projects/${module.project-services.project_id}/locations/${var.region}/workflows/${modules.workflows.name}/executions"
+  method = "POST"
+  request_headers = {
+    Accept = "application/json"
+  Authorization = "Bearer ${data.google_client_config.current.access_token}" }
 }

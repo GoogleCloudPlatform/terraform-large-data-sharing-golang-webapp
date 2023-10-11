@@ -29,6 +29,16 @@ module "project_services" {
     "vpcaccess.googleapis.com",
     "monitoring.googleapis.com",
     "cloudtrace.googleapis.com",
+    "workflows.googleapis.com",
+  ]
+
+  activate_api_identities = [
+    {
+      api = "workflows.googleapis.com"
+      roles = [
+        "roles/workflows.viewer"
+      ]
+    }
   ]
 }
 
@@ -61,13 +71,17 @@ locals {
   }
 }
 
+resource "random_id" "random_code" {
+  byte_length = 4
+}
+
 module "storage" {
   depends_on = [
     module.project_services,
   ]
   source = "./modules/storage"
 
-  project_id = var.project_id
+  project_id = module.project_services.project_id
   location   = var.bucket_location
   labels     = var.labels
   name       = "lds-resource-${data.google_project.project.number}-golang"
@@ -79,7 +93,7 @@ module "networking" {
   ]
   source = "./modules/networking"
 
-  project_id = var.project_id
+  project_id = module.project_services.project_id
   region     = var.region
 }
 
@@ -89,20 +103,13 @@ module "firestore" {
   ]
   source = "./modules/firestore"
 
-  project_id        = var.project_id
+  project_id        = module.project_services.project_id
   collection_fields = local.collection_fields
   firestore_db_name = local.firestore_db_name
 }
 
-resource "random_id" "random_code" {
-  byte_length = 4
-}
-
 resource "google_service_account" "cloudrun" {
-  depends_on = [
-    module.project_services,
-  ]
-
+  project    = module.project_services.project_id
   account_id = "cloudrun-${random_id.random_code.hex}-golang"
 }
 
@@ -113,7 +120,7 @@ resource "google_project_iam_member" "cloudrun" {
     "roles/compute.networkUser",
     "roles/cloudtrace.agent",
   ])
-  project = var.project_id
+  project = module.project_services.project_id
   role    = each.key
   member  = "serviceAccount:${google_service_account.cloudrun.email}"
 }
@@ -124,7 +131,7 @@ module "cloud_run_server" {
   ]
   source = "./modules/cloudrun"
 
-  project_id      = var.project_id
+  project_id      = module.project_services.project_id
   location        = var.region
   cloud_run_name  = "lds-server-golang"
   cloud_run_image = var.lds_server_image
@@ -149,7 +156,7 @@ module "cloud_run_server" {
     },
     {
       name  = "LDS_PROJECT"
-      value = var.project_id
+      value = module.project_services.project_id
     },
     {
       name  = "LDS_BUCKET"
@@ -201,7 +208,7 @@ module "cloud_run_client" {
   ]
   source = "./modules/cloudrun"
 
-  project_id      = var.project_id
+  project_id      = module.project_services.project_id
   location        = var.region
   cloud_run_name  = "lds-client-golang"
   cloud_run_image = var.lds_client_image
@@ -238,7 +245,7 @@ module "load_balancer" {
   ]
   source = "./modules/load-balancer"
 
-  project_id          = var.project_id
+  project_id          = module.project_services.project_id
   region              = var.region
   bucket_name         = module.storage.bucket_name
   client_service_name = module.cloud_run_client.cloud_run.name
@@ -253,7 +260,7 @@ resource "google_monitoring_dashboard" "lds" {
 
   for_each = {
     "lds_cloudrun_dashboard.tftpl" = {
-      PROJECT_ID = var.project_id,
+      PROJECT_ID = module.project_services.project_id,
     }
     "lds_cdn_dashboard.tftpl" = {
 
@@ -261,4 +268,30 @@ resource "google_monitoring_dashboard" "lds" {
   }
 
   dashboard_json = templatefile("${path.module}/files/${each.key}", each.value)
+}
+
+resource "google_service_account" "workflows" {
+  project    = module.project_services.project_id
+  account_id = "workflows-${random_id.random_code.hex}"
+}
+
+resource "google_project_iam_member" "workflows" {
+  for_each = toset([
+    "roles/cloudrun.invoker",
+  ])
+  project = module.project_services.project_id
+  role    = each.key
+  member  = "serviceAccount:${google_service_account.workflows.email}"
+}
+
+module "workflows" {
+  source = "./modules/workflows"
+
+  project_id            = module.project_services.project_id
+  region                = var.region
+  name                  = "workflow-${random_id.random_code.hex}"
+  service_account_email = google_service_account.workflows.email
+  labels                = var.labels
+  job_migrate_data_name = google_cloud_run_v2_job.migrate_data.name
+  job_reset_data_name   = google_cloud_run_v2_job.reset_data.name
 }
