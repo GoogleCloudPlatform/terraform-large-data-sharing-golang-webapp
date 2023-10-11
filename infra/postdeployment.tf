@@ -83,7 +83,7 @@ data "google_client_config" "current" {
 
 # # execute the post init workflow
 data "http" "call_workflows_post_init" {
-  url    = "https://workflowexecutions.googleapis.com/v1/projects/${module.project-services.project_id}/locations/${var.region}/workflows/${modules.workflows.name}/executions"
+  url    = "https://workflowexecutions.googleapis.com/v1/projects/${module.project_services.project_id}/locations/${var.region}/workflows/${module.workflows.name}/executions"
   method = "POST"
   request_headers = {
     Accept = "application/json"
