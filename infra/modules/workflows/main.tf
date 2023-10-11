@@ -23,7 +23,7 @@ resource "google_workflows_workflow" "main" {
 
   labels = var.labels
 
-  source_contents = templatefile("../../templates/workflow.tftpl", {
+  source_contents = templatefile("${path.module}/templates/workflow.tftpl", {
     project_id        = var.project_id,
     reset_data_name   = var.job_reset_data_name,
     migrate_data_name = var.job_migrate_data_name,
