@@ -277,7 +277,7 @@ resource "google_service_account" "workflows" {
 
 resource "google_project_iam_member" "workflows" {
   for_each = toset([
-    "roles/cloudrun.invoker",
+    "roles/run.invoker",
   ])
   project = module.project_services.project_id
   role    = each.key
