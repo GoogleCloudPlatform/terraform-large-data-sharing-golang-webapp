@@ -61,7 +61,7 @@ variable "lds_client_image" {
 variable "lds_initialization_bucket_name" {
   description = "Bucket for cloud run job"
   type        = string
-  default     = "jss-resources"
+  default     = "hsa-public-bucket"
 }
 
 variable "lds_initialization_archive_file_name" {

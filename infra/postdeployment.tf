@@ -16,9 +16,9 @@
 
 locals {
   migrate_data_commands = [
-    "gsutil cp gs://${var.lds_initialization_bucket_name}/execution.sh .",
-    "gsutil cp gs://${var.lds_initialization_bucket_name}/upload.sh .",
-    "bash execution.sh ${var.lds_initialization_bucket_name} ${var.lds_initialization_archive_file_name} ${module.cloud_run_client.cloud_run.uri}",
+    "gsutil cp gs://${var.lds_initialization_bucket_name}/large-data-sharing/execution.sh .",
+    "gsutil cp gs://${var.lds_initialization_bucket_name}/large-data-sharing/upload.sh .",
+    "bash execution.sh ${var.lds_initialization_bucket_name}/large-data-sharing ${var.lds_initialization_archive_file_name} ${module.cloud_run_client.cloud_run.uri}",
   ]
 }
 

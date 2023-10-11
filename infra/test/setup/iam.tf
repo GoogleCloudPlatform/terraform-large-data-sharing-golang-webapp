@@ -28,6 +28,7 @@ locals {
     "roles/run.admin",
     "roles/monitoring.admin",
     "roles/vpcaccess.admin",
+    "roles/workflows.admin",
   ]
 }
 
