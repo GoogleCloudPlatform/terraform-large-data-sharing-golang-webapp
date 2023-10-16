@@ -38,3 +38,8 @@ output "neos_walkthrough_url" {
   description = "Neos Tutorial URL"
   value       = "https://console.cloud.google.com/products/solutions/deployments?walkthrough_id=panels--sic--large-data-sharing-golang_toc"
 }
+
+output "workflow_return_project_setup" {
+  description = "Output of the project setup workflow"
+  value       = data.http.call_workflows_post_init.response_body
+}
