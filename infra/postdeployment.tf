@@ -115,8 +115,8 @@ resource "google_compute_instance" "initialization" {
 
   metadata_startup_script = <<EOT
     #!/bin/bash
-    gcloud beta run jobs execute ${google_cloud_run_v2_job.reset_data.name} --wait --project ${var.project_id} --region ${var.region}
-    gcloud beta run jobs execute ${google_cloud_run_v2_job.migrate_data.name} --wait --project ${var.project_id} --region ${var.region}
+    gcloud run jobs execute ${google_cloud_run_v2_job.reset_data.name} --wait --project ${var.project_id} --region ${var.region}
+    gcloud run jobs execute ${google_cloud_run_v2_job.migrate_data.name} --wait --project ${var.project_id} --region ${var.region}
     shutdown -h now
   EOT
   labels                  = var.labels
