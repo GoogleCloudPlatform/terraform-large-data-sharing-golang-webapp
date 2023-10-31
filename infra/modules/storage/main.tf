@@ -15,11 +15,12 @@
  */
 
 resource "google_storage_bucket" "main" {
-  project       = var.project_id
-  name          = var.name
-  location      = var.location
-  labels        = var.labels
-  force_destroy = true
+  project                     = var.project_id
+  name                        = var.name
+  location                    = var.location
+  labels                      = var.labels
+  force_destroy               = true
+  uniform_bucket_level_access = true
 }
 
 resource "google_storage_default_object_acl" "policy" {
