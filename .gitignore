@@ -4,3 +4,4 @@
 **/terraform.tfplan
 **/values-*.yaml
 credentials.json
+*.DS_Store
