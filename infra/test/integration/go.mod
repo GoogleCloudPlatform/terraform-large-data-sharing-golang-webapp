@@ -3,7 +3,7 @@ module github.com/HSA-Integration/terraform-large-data-sharing-golang-webapp/inf
 go 1.20
 
 require (
-	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.8.1
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.9.1
 	github.com/stretchr/testify v1.8.4
 )
 
