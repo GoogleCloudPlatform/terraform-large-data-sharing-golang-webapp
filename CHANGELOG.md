@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/compare/v0.1.3...v0.2.0) (2024-05-03)
+
+
+### Features
+
+* adds firestore unique db ([#48](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/48)) ([ff58c04](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/ff58c04f3993737dd29513528aa4dab6327cb38a))
+
+
+### Bug Fixes
+
+* **deps:** Update module github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test to v0.11.1 ([#77](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/issues/77)) ([0f24102](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/commit/0f24102dd89a1f745058a8435749521b6b4d6287))
+
 ## [0.1.3](https://github.com/GoogleCloudPlatform/terraform-large-data-sharing-golang-webapp/compare/v0.1.2...v0.1.3) (2023-07-26)
 
 
